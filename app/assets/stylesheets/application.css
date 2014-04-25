@@ -146,3 +146,7 @@
 #credit_card_details .cc_error {
   display: none;
 }
+
+.center-text {
+  text-align: center;
+}

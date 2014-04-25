@@ -15,10 +15,18 @@ class User < ActiveRecord::Base
       return customer
     end
 
-    Iugu::Customer.fetch(customer_id) rescue false
+    Iugu::Customer.fetch(customer_id) rescue nil
   end
 
   def subscription
-    Iugu::Subscription.fetch(subscription_id) rescue false
+    Iugu::Subscription.fetch(subscription_id) if subscribed?
+  end
+
+  def payment_methods
+    Iugu::PaymentMethod.search({customer_id: customer_id}).results rescue []
+  end
+
+  def invoices
+    Iugu::Invoice.search( customer_id => customer_id ).results rescue []
   end
 end

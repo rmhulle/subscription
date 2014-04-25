@@ -1,0 +1,26 @@
+.profile_page h2 {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.profile_page p {
+  text-align: center;
+}
+
+.profile_page .thumbnail {
+  padding: 20px;
+}
+
+.profile_page .payment_method {
+  text-align: center;
+}
+
+.profile_page #add-payment-button {
+  margin-top: 20px;
+}
+
+.profile_page .invoices {
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -21,6 +21,9 @@ IuguSubscriptionExample::Application.routes.draw do
   post 'subscribe' => 'subscription#subscribe_to_plan', as: 'subscribe_to_plan'
   get 'a' => 'app#home', as: 'app_home'
 
+  get 'profile' => 'profile#view', as: 'profile'
+  get 'profile/new_payment_method' => 'profile#new_payment_method', as: 'profile_new_payment_method'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
