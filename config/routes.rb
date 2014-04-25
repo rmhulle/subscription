@@ -1,4 +1,25 @@
 IuguSubscriptionExample::Application.routes.draw do
+  root :to => 'index#index'
+
+  devise_for :users
+
+  as :user do
+    get 'login' => 'devise/sessions#new', :as => 'new_user_session'
+    post 'login' => 'devise/sessions#create', :as => 'user_session'
+    delete 'logout' => 'devise/sessions#destroy', :as => 'destroy_user_session' 
+
+    get 'signup' => 'devise/registrations#new', :as => 'new_user_registration'
+    post 'signup' => 'devise/registrations#create', :as => 'user_registration'
+
+    post 'forgot_password' => 'devise/passwords#create', :as => 'user_password'
+    get 'forgot_password' => 'devise/passwords#new', :as => 'new_user_password'
+    get 'forgot_password/edit' => 'devise/passwords#edit', :as => 'edit_user_password'
+    put 'forgot_password' => 'devise/passwords#update', :as => 'update_user_pasword'
+  end
+
+  get 'subscribe' => 'subscription#subscribe', as: 'subscribe'
+  get 'a' => 'app#home', as: 'app_home'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

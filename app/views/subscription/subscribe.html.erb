@@ -1,0 +1,73 @@
+<% unless @plan %>
+  <div class="page-header">
+    <h1>Selecione um Plano</h1>
+  </div>
+  <div class="row">
+    <% @plans.reverse.each do |plan| %> 
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <div class="caption">
+            <h3><%= plan.name %></h3>
+            <h4>R$ 10,00 / mês</h4>
+            <ul class="features">
+              <li class="important-feature">10 Usuários</li>
+              <li>20 Páginas</li>
+            </ul>
+            <p>
+              <%= link_to "Assinar", subscribe_path(p: plan.identifier), { class: "btn btn-block btn-primary" } %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="page-header">
+    <h1>Assinar <%= @plan.name if @plan %></h1>
+  </div>
+  <form action="#">
+    <input id="plan-identifier" type="hidden" value="<%= @plan.identifier %>"/>
+    <input id="credit_card_token" type="hidden" value="<%= @credit_card_token || "" %>"/>
+    <div class="form-horizontal">
+      <div class="payment-select">
+        <div class="btn-group btn-group-lg" data-toggle="buttons">
+          <label class="btn btn-default credit_card <%= "active" if @payment_method == "credit_card" %>">
+            <input type="radio" name="payment_method" id="credit_card" value="credit_card" checked="<%= (@payment_method == "credit_card") %>"/>
+            Cartão de Crédito
+          </label>
+          <label class="btn btn-default bank_slip" class="<%= "active" if @payment_method == "bank_slip" %>">
+            <input type="radio" name="payment_method" id="bank_slip" value="bank_slip" checked="<%= (@payment_method == "bank_slip") %>"/>
+            Boleto Bancário
+          </label>
+        </div>
+      </div>
+      <div id="credit_card_details">
+        <div class="well">
+          <div style="text-align: center"><%= image_tag "aceitamos.jpg", style: "padding-bottom: 20px" %></div>
+          <div class="data-group">
+            <div class="credit_card_type"></div>
+            <input class="form-control credit_card_number" placeholder="Número do Cartão" type="text" data-iugu="number" value="" autocomplete="off" />
+            <input class="form-control credit_card_name" placeholder="Nome no Cartão" type="text" value="" autocomplete="off" />
+            <input class="form-control credit_card_expiration" data-iugu="expiration" placeholder="MM/AA" type="text" autocomplete="off" value="" />
+          </div>
+          <div class="well cvv" style="position: relative;">
+            <div class="credit_card_cvv_type"></div>
+            <input class="form-control credit_card_cvv" data-iugu="verification_value" placeholder="CVV" type="text" autocomplete="off" value="" />
+            <span>Código de Segurança</span>
+          </div>
+          <input class="form-control credit_card_first_name" data-iugu="first_name" placeholder="Nome" type="hidden" autocomplete="off" value="" />
+          <input class="form-control credit_card_last_name" data-iugu="last_name" placeholder="Sobrenome" type="hidden" autocomplete="off" value="" />
+
+          <div style="text-align: right;">
+            <%= image_tag "pagamentos-por-iugu-linhas-escuro.png", style: "padding-top: 10px" %>
+          </div>
+        </div>
+      </div>
+      <div class="subscribe-button">
+        <button class="btn btn-danger btn-lg" type="submit">
+          Assinar
+        </button>
+      </div>
+    </div>
+  </form>
+<% end %>

@@ -2,13 +2,19 @@
 <html>
 <head>
   <title>IuguSubscriptionExample</title>
+  <%= stylesheet_link_tag    "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", :media => "all" %>
+  <%= stylesheet_link_tag    "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css", :media => "all" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "https://js.iugu.com/v1" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 
+  <%= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" %>
 </body>
 </html>

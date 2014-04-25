@@ -11,3 +11,127 @@
  *= require_self
  *= require_tree .
  */
+
+.features {
+  padding-left: 20px;
+}
+
+.important-feature {
+  font-weight: bold;
+}
+
+#credit_card_details {
+  max-width: 300px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.data-group {
+  height: 85px;
+  position: relative;
+}
+
+.credit_card_number {
+  position: absolute; 
+  padding-left: 36px;
+}
+
+.credit_card_expiration {
+  position: absolute;
+  top: 40px;
+  width: 70px;
+  right: 0px;
+  font-size: 12px;
+  text-align: center;
+}
+.credit_card_name {
+  position: absolute;
+  top: 40px;
+  width: 185px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.credit_card_type, .credit_card_cvv_type {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: #F00;
+  z-index: 1000;
+  -webkit-transition:background-position .2s ease-in;  
+  -moz-transition:background-position .2s ease-in;  
+  -o-transition:background-position .2s ease-in;  
+  transition:background-position .2s ease-in; 
+}
+
+.credit_card_type {
+  left: 7px;
+  top: 5px;
+  background: url("credit_card_type.png");
+}
+
+&.visa .credit_card_type {
+  background-position: 0px -24px; 
+}
+
+&.mastercard .credit_card_type {
+  background-position: 0px -72px; 
+}
+
+&.amex .credit_card_type {
+  background-position: 0px -120px; 
+}
+
+.credit_card_cvv_type {
+  left: 76px;
+  top: 15px;
+  background: url("credit_card_cvv.png");
+}
+
+&.amex .credit_card_cvv_type {
+  background-position: 0px -24px; 
+}
+
+.payment-select {
+  text-align: center;
+}
+
+.payment-select .btn-group {
+  width: 70%; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-group .btn {
+  width: 50%; 
+}
+.well.cvv {
+  margin-bottom: 0px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.well.cvv .credit_card_cvv {
+  width: 120px; 
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.well.cvv span {
+  display: block;
+  margin: 0px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.subscribe-button {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.subscribe-button button {
+  width: 70%;
+}
