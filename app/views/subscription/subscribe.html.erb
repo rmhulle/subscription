@@ -8,10 +8,13 @@
         <div class="thumbnail">
           <div class="caption">
             <h3><%= plan.name %></h3>
-            <h4>R$ 10,00 / mês</h4>
+            <h4>R$ <%= plan.prices[0]["value_cents"] / 100 %> / <%= (plan.interval_type == "months") ? "Mês" : "Semana" %></h4>
             <ul class="features">
-              <li class="important-feature">10 Usuários</li>
-              <li>20 Páginas</li>
+              <% plan.features.each do |feature| %>
+                <li class="<%= "important-feature" if feature["important"] == "true" %>">
+                  <%= feature["value"] %> <%= feature["name"] %>
+                </li>
+              <% end %>
             </ul>
             <p>
               <%= link_to "Assinar", subscribe_path(p: plan.identifier), { class: "btn btn-block btn-primary" } %>
@@ -25,24 +28,40 @@
   <div class="page-header">
     <h1>Assinar <%= @plan.name if @plan %></h1>
   </div>
-  <form action="#">
-    <input id="plan-identifier" type="hidden" value="<%= @plan.identifier %>"/>
-    <input id="credit_card_token" type="hidden" value="<%= @credit_card_token || "" %>"/>
+  <form method="POST" action="<%= subscribe_to_plan_path %>">
+    <% if @error %>
+      <div class="form_error alert alert-danger">
+        <strong>
+          Erro!!!
+        </strong>
+        <p><%= @error %></p>
+      </div>
+    <% end %>
+
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+    <input id="plan_identifier" name="plan_identifier" type="hidden" value="<%= @plan.identifier %>"/>
+    <input id="credit_card_token" name="credit_card_token" type="hidden" value="<%= @credit_card_token || "" %>"/>
     <div class="form-horizontal">
       <div class="payment-select">
         <div class="btn-group btn-group-lg" data-toggle="buttons">
           <label class="btn btn-default credit_card <%= "active" if @payment_method == "credit_card" %>">
-            <input type="radio" name="payment_method" id="credit_card" value="credit_card" checked="<%= (@payment_method == "credit_card") %>"/>
+            <%= radio_button_tag 'payment_method', 'credit_card', (@payment_method == "credit_card") %>
             Cartão de Crédito
           </label>
           <label class="btn btn-default bank_slip" class="<%= "active" if @payment_method == "bank_slip" %>">
-            <input type="radio" name="payment_method" id="bank_slip" value="bank_slip" checked="<%= (@payment_method == "bank_slip") %>"/>
+            <%= radio_button_tag 'payment_method', 'bank_slip', (@payment_method == "bank_slip") %>
             Boleto Bancário
           </label>
         </div>
       </div>
       <div id="credit_card_details">
         <div class="well">
+          <div class="cc_error alert alert-danger">
+            <strong>
+              Erro!!!
+            </strong>
+            Cartão de crédito inválido.
+          </div>
           <div style="text-align: center"><%= image_tag "aceitamos.jpg", style: "padding-bottom: 20px" %></div>
           <div class="data-group">
             <div class="credit_card_type"></div>

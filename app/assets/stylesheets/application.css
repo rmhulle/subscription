@@ -71,16 +71,20 @@
   background: url("credit_card_type.png");
 }
 
-&.visa .credit_card_type {
+#credit_card_details.visa .credit_card_type {
   background-position: 0px -24px; 
 }
 
-&.mastercard .credit_card_type {
+#credit_card_details.mastercard .credit_card_type {
   background-position: 0px -72px; 
 }
 
-&.amex .credit_card_type {
+#credit_card_details.amex .credit_card_type {
   background-position: 0px -120px; 
+}
+
+#credit_card_details.diners .credit_card_type {
+  background-position: 0px -144px; 
 }
 
 .credit_card_cvv_type {
@@ -89,7 +93,7 @@
   background: url("credit_card_cvv.png");
 }
 
-&.amex .credit_card_cvv_type {
+#credit_card_details.amex .credit_card_cvv_type {
   background-position: 0px -24px; 
 }
 
@@ -127,11 +131,18 @@
 }
 
 .subscribe-button {
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 
 .subscribe-button button {
+  margin-top: 20px;
   width: 70%;
+}
+
+#credit_card_details .cc_error {
+  display: none;
 }

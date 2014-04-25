@@ -7,7 +7,8 @@ window.enable_payment = function() {
 };
 
 $(document).ready(function() {
-  Iugu.setAccountID("e1b83f70-191a-473c-b10a-24f357047206");
+  // Configure seu AccountID aqui
+  Iugu.setAccountID("9035e476-422e-4d10-81bc-b86dd72e1364");
 
   $("#credit_card_details .credit_card_number").formatter({
     'pattern': '{{9999}} {{9999}} {{9999}} {{9999}}',
@@ -28,6 +29,7 @@ $(document).ready(function() {
     $("#credit_card_details").removeClass("visa");
     $("#credit_card_details").removeClass("mastercard");
     $("#credit_card_details").removeClass("amex");
+    $("#credit_card_details").removeClass("diners");
     brand = Iugu.utils.getBrandByCreditCardNumber(number);
     if (brand) {
       $("#credit_card_details").addClass(brand);
@@ -51,12 +53,14 @@ $(document).ready(function() {
         return form.get(0).submit();
       }
       $("#credit_card_details").removeClass("has-error");
+      $(".cc_error").hide();
       name = $("#credit_card_details .credit_card_name").val().split(" ");
       $("#credit_card_details .credit_card_first_name").val(name.shift());
       $("#credit_card_details .credit_card_last_name").val(name.join(" "));
       tokenResponseHandler = function(data) {
         if (data.errors) {
           form.find("button .btn-danger").prop('disabled', false);
+          $(".cc_error").show();
           return $("#credit_card_details").addClass("has-error");
         } else {
           $("#credit_card_token").val(data.id);
@@ -79,17 +83,5 @@ $(document).ready(function() {
   });
   $(".payment-select label.bank_slip").on("click", function(e) {
     return $("#credit_card_details").hide();
-  });
-  $('#bt_buscar_cep').bind('ajax:before', function() {
-    return $(this).data('params', {
-      cep: $('#cep').val()
-    });
-  });
-  return $('#bt_buscar_cep').bind("ajax:success", function(evt, data, status, xhr) {
-    $('#endereco').val(data.type + " " + data.description);
-    $('#cidade').val(data.city);
-    $('#estado').val(data.state);
-    $('#bairro').val(data.neighborhood);
-    return $('#uf').val(data.state);
   });
 });

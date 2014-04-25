@@ -18,6 +18,7 @@ IuguSubscriptionExample::Application.routes.draw do
   end
 
   get 'subscribe' => 'subscription#subscribe', as: 'subscribe'
+  post 'subscribe' => 'subscription#subscribe_to_plan', as: 'subscribe_to_plan'
   get 'a' => 'app#home', as: 'app_home'
 
   # The priority is based upon order of creation:
