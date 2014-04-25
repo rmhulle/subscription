@@ -1,0 +1,54 @@
+<div class="page-header">
+  <h1>Adicionar forma de pagamento <%= @plan.name if @plan %></h1>
+</div>
+
+<form method="POST" action="<%= profile_create_payment_method_path %>">
+
+  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+  <input checked="checked" style="display:none;" name="payment_method" type="radio" value="credit_card">
+  <input id="credit_card_token" name="credit_card_token" type="hidden" value="<%= @credit_card_token || "" %>"/>
+
+  <div class="form-group">
+    <input class="form-control" name="description" placeholder="Descrição" />
+  </div>
+
+  <div id="credit_card_details">
+    <div class="well">
+
+      <div class="cc_error alert alert-danger">
+        <strong>
+          Erro!!!
+        </strong>
+        Cartão de crédito inválido.
+      </div>
+
+      <div style="text-align: center"><%= image_tag "aceitamos.jpg", style: "padding-bottom: 20px" %></div>
+
+      <div class="data-group">
+        <div class="credit_card_type"></div>
+        <input class="form-control credit_card_number" placeholder="Número do Cartão" type="text" data-iugu="number" value="" autocomplete="off" />
+        <input class="form-control credit_card_name" placeholder="Nome no Cartão" type="text" value="" autocomplete="off" />
+        <input class="form-control credit_card_expiration" data-iugu="expiration" placeholder="MM/AA" type="text" autocomplete="off" value="" />
+      </div>
+      <div class="well cvv" style="position: relative;">
+        <div class="credit_card_cvv_type"></div>
+        <input class="form-control credit_card_cvv" data-iugu="verification_value" placeholder="CVV" type="text" autocomplete="off" value="" />
+        <span>Código de Segurança</span>
+      </div>
+
+      <input class="form-control credit_card_first_name" data-iugu="first_name" placeholder="Nome" type="hidden" autocomplete="off" value="" />
+      <input class="form-control credit_card_last_name" data-iugu="last_name" placeholder="Sobrenome" type="hidden" autocomplete="off" value="" />
+
+      <div style="text-align: right;">
+        <%= image_tag "pagamentos-por-iugu-linhas-escuro.png", style: "padding-top: 10px" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="subscribe-button">
+    <button class="btn btn-danger btn-lg" type="submit">
+      Adicionar
+    </button>
+  </div>
+
+</form>

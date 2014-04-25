@@ -67,6 +67,10 @@ $(document).ready(function() {
           return form.get(0).submit();
         }
       };
+      var description = $('input[name=description]');
+      if(description.length > 0 && (description.val() == undefined || description.val().length == 0)){
+        return description.parent().addClass("has-error");
+      }
       Iugu.createPaymentToken(this, tokenResponseHandler);
     }
     return true;

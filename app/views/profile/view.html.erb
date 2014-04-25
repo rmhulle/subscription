@@ -25,12 +25,27 @@
     <div class="col-md-12">
       <div class="thumbnail">
         <h2> Formas de Pagamento </h2>
-        <% @payment_methods.each do |payment_method| %>
-          <div class="payment_method">
-            Cartão: <%= payment_method.data['display_number'] %>
-            Bandeira: <%= payment_method.data['brand'] %>
-          </div>
-        <% end %>
+
+        <table class="payment-methods">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Cartão</th>
+              <th>Bandeira</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @payment_methods.each do |payment_method| %>
+              <tr>
+                <td><%= payment_method.description %></td>
+                <td><%= payment_method.data['display_number'] %></td>
+                <td><%= payment_method.data['brand'] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+
+        </table>
 
         <div class="center-text">
           <a id="add-payment-button" class="btn btn-default" href=<%= profile_new_payment_method_path %>>Adicionar</a>

@@ -1,3 +1,4 @@
+#encoding: utf-8
 class ProfileController < ApplicationController
 
   before_filter :authenticate_user!
@@ -13,8 +14,14 @@ class ProfileController < ApplicationController
   end
 
   def create_payment_method
+    @user = current_user
 
-    
+    @payment_method = @user.customer.payment_methods.create({
+      description: params[:description],
+      token: params[:credit_card_token]
+    })
+
+    redirect_to profile_path
   end
 
 end

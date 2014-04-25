@@ -29,9 +29,6 @@ class SubscriptionController < ApplicationController
     subscription = Iugu::Subscription.create(sub_params)
 
     if subscription.errors
-      Rails.logger.info "TESTE"
-      Rails.logger.info subscription.errors
-      Rails.logger.info subscription
       @plan = Iugu::Plan.fetch_by_identifier(params[:plan_identifier])
       @payment_method = params[:payment_method]
       @error = "Erro na Cobrança!"

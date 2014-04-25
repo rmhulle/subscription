@@ -7,6 +7,7 @@ IuguSubscriptionExample::Application.routes.draw do
     get 'login' => 'devise/sessions#new', :as => 'new_user_session'
     post 'login' => 'devise/sessions#create', :as => 'user_session'
     delete 'logout' => 'devise/sessions#destroy', :as => 'destroy_user_session' 
+    get 'logout' => 'devise/sessions#destroy', :as => 'destroy_user_session' 
 
     get 'signup' => 'devise/registrations#new', :as => 'new_user_registration'
     post 'signup' => 'devise/registrations#create', :as => 'user_registration'
@@ -23,6 +24,7 @@ IuguSubscriptionExample::Application.routes.draw do
 
   get 'profile' => 'profile#view', as: 'profile'
   get 'profile/new_payment_method' => 'profile#new_payment_method', as: 'profile_new_payment_method'
+  post 'profile/create_payment_method' => 'profile#create_payment_method', as: 'profile_create_payment_method'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

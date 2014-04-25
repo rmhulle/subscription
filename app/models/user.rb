@@ -27,6 +27,6 @@ class User < ActiveRecord::Base
   end
 
   def invoices
-    Iugu::Invoice.search( customer_id => customer_id ).results rescue []
+    Iugu::Invoice.search( customer_id: customer_id ).results rescue []
   end
 end
