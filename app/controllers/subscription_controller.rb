@@ -41,6 +41,6 @@ class SubscriptionController < ApplicationController
     current_user.subscription_id = subscription.id
     current_user.save
 
-    render text: params
+    redirect_to profile_url
   end
 end
