@@ -25,6 +25,8 @@ IuguSubscriptionExample::Application.routes.draw do
   get 'profile' => 'profile#view', as: 'profile'
   get 'profile/new_payment_method' => 'profile#new_payment_method', as: 'profile_new_payment_method'
   post 'profile/create_payment_method' => 'profile#create_payment_method', as: 'profile_create_payment_method'
+  delete 'profile/delete_payment_method/:id' => 'profile#delete_payment_method', as: 'profile_delete_payment_method'
+  post 'profile/default_payment_method/:id' => 'profile#default_payment_method', as: 'profile_default_payment_method'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
