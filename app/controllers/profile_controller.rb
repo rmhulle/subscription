@@ -16,12 +16,15 @@ class ProfileController < ApplicationController
 
   def create_payment_method
     @user = current_user
+    customer = current_user.customer
 
-    @payment_method = @user.customer.payment_methods.create({
+    @payment_method = customer.payment_methods.create({
       description: params[:description],
       token: params[:credit_card_token]
     })
 
+    logger.info "Payment ---- #{@payment_method.inspect}"
+    
     redirect_to profile_path
   end
 

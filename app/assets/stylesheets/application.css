@@ -33,7 +33,7 @@
 }
 
 .credit_card_number {
-  position: absolute; 
+  position: absolute;
   padding-left: 36px;
 }
 
@@ -59,10 +59,10 @@
   height: 24px;
   background: #F00;
   z-index: 1000;
-  -webkit-transition:background-position .2s ease-in;  
-  -moz-transition:background-position .2s ease-in;  
-  -o-transition:background-position .2s ease-in;  
-  transition:background-position .2s ease-in; 
+  -webkit-transition:background-position .2s ease-in;
+  -moz-transition:background-position .2s ease-in;
+  -o-transition:background-position .2s ease-in;
+  transition:background-position .2s ease-in;
 }
 
 .credit_card_type {
@@ -72,19 +72,19 @@
 }
 
 #credit_card_details.visa .credit_card_type {
-  background-position: 0px -24px; 
+  background-position: 0px -24px;
 }
 
 #credit_card_details.mastercard .credit_card_type {
-  background-position: 0px -72px; 
+  background-position: 0px -72px;
 }
 
 #credit_card_details.amex .credit_card_type {
-  background-position: 0px -120px; 
+  background-position: 0px -120px;
 }
 
 #credit_card_details.diners .credit_card_type {
-  background-position: 0px -144px; 
+  background-position: 0px -144px;
 }
 
 .credit_card_cvv_type {
@@ -94,7 +94,7 @@
 }
 
 #credit_card_details.amex .credit_card_cvv_type {
-  background-position: 0px -24px; 
+  background-position: 0px -24px;
 }
 
 .payment-select {
@@ -102,13 +102,13 @@
 }
 
 .payment-select .btn-group {
-  width: 70%; 
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .btn-group .btn {
-  width: 50%; 
+  width: 33%; 
 }
 .well.cvv {
   margin-bottom: 0px;
@@ -117,7 +117,7 @@
 }
 
 .well.cvv .credit_card_cvv {
-  width: 120px; 
+  width: 120px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;

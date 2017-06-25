@@ -3,7 +3,7 @@
     <h1>Selecione um Plano</h1>
   </div>
   <div class="row">
-    <% @plans.reverse.each do |plan| %> 
+    <% @plans.reverse.each do |plan| %>
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
           <div class="caption">
@@ -44,13 +44,17 @@
     <div class="form-horizontal">
       <div class="payment-select">
         <div class="btn-group btn-group-lg" data-toggle="buttons">
-          <label class="btn btn-default credit_card <%= "active" if @payment_method == "credit_card" %>">
+          <label class="btn btn-default credit_card" class="<%= "active" if @payment_method == "credit_card" %>">
             <%= radio_button_tag 'payment_method', 'credit_card', (@payment_method == "credit_card") %>
             Cartão de Crédito
           </label>
           <label class="btn btn-default bank_slip" class="<%= "active" if @payment_method == "bank_slip" %>">
             <%= radio_button_tag 'payment_method', 'bank_slip', (@payment_method == "bank_slip") %>
             Boleto Bancário
+          </label>
+          <label class="btn btn-default onclick_card_details" class="<%= "active" if @payment_method == "credit_card" %>">
+            <%= radio_button_tag 'payment_method', 'credit_card', (@payment_method == "credit_card") %>
+            Cartão Padrão
           </label>
         </div>
       </div>
@@ -82,6 +86,32 @@
           </div>
         </div>
       </div>
+      <div id="onclick_card_details">
+        <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <table class="table table-condensed table-responsive">
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Cartão</th>
+                <th>Token</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @cards.each do |payment_method| %>
+                <tr class="<%= "active" if @customer.default_payment_method_id == payment_method.id %>">
+                  <td><%= payment_method.description %></td>
+                  <td><%= payment_method.data['brand'] + " " + payment_method.data['display_number'] %></td>
+                  <td><a id="payment" onclick=$('#credit_card_token').val('<%= payment_method.id %>'); class: "btn btn-xs btn-danger" > Usar Cartão </a></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
       <div class="subscribe-button">
         <button class="btn btn-danger btn-lg" type="submit">
           Assinar

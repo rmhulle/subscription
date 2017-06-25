@@ -6,10 +6,16 @@ window.enable_payment = function() {
   return $(".payment-method").show();
 };
 
+function setCard(obj) {
+  $("#credit_card_token").val(obj);
+  console.log(obj);
+  return
+}
+
 $(document).ready(function() {
   // Configure seu AccountID aqui
-  Iugu.setAccountID("9035e476-422e-4d10-81bc-b86dd72e1364");
-
+  Iugu.setAccountID("5453449C2C7246DEA0137C241DC4173B");
+  Iugu.setTestMode(true);
   $("#credit_card_details .credit_card_number").formatter({
     'pattern': '{{9999}} {{9999}} {{9999}} {{9999}}',
     'persistent': false
@@ -68,7 +74,7 @@ $(document).ready(function() {
         }
       };
       var description = $('input[name=description]');
-      if(description.length > 0 && (description.val() == undefined || description.val().length == 0)){
+      if (description.length > 0 && (description.val() == undefined || description.val().length == 0)) {
         return description.parent().addClass("has-error");
       }
       Iugu.createPaymentToken(this, tokenResponseHandler);
@@ -81,11 +87,29 @@ $(document).ready(function() {
   }
   if ($('input[name=payment_method]:checked').val() === "bank_slip") {
     $("#credit_card_details").hide();
+    $("#onclick_card_details").hide();
+
   }
+
   $(".payment-select label.credit_card").on("click", function(e) {
-    return $("#credit_card_details").show();
+    $("#onclick_card_details").hide();
+    $("#credit_card_details").show();
+    console.log("cartao");
+    return
   });
+
   $(".payment-select label.bank_slip").on("click", function(e) {
-    return $("#credit_card_details").hide();
+    $("#onclick_card_details").hide();
+    $("#credit_card_details").hide();
+    console.log("boleto");
+    return
   });
+
+  $(".payment-select label.onclick_card_details").on("click", function(e) {
+    $("#credit_card_details").hide();
+    console.log("oneclick");
+    $("#onclick_card_details").show();
+    return
+  });
+
 });

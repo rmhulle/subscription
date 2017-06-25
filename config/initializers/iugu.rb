@@ -1,2 +1,2 @@
 # Colocar seu API Token aqui!
-Iugu.api_key = "65d04386ae2d62bba2c2e73a58a69ec1"
+Iugu.api_key = "7fc94819ca2a1cdfb86a026879a9acc2"

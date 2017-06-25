@@ -6,12 +6,17 @@ class SubscriptionController < ApplicationController
     if params[:p]
       @plan = Iugu::Plan.fetch_by_identifier(params[:p]) rescue nil
     end
+    @user = current_user
+    @customer = @user.customer
     @plans = Iugu::Plan.search.results unless @plan
     @payment_method = "credit_card"
+    @cards = @user.payment_methods
+
   end
 
   def subscribe_to_plan
     customer = current_user.customer
+
     if params[:payment_method] == "credit_card"
       customer.payment_methods.create({
         description: "Cartão de Crédito",
@@ -21,7 +26,7 @@ class SubscriptionController < ApplicationController
     end
 
     sub_params = {
-      plan_identifier: params[:plan_identifier], 
+      plan_identifier: params[:plan_identifier],
       customer_id: customer.id
     }
     sub_params[:only_on_charge_success] = true if params[:payment_method] == "credit_card"
